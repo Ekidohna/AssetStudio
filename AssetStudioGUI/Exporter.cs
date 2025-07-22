@@ -11,6 +11,7 @@ namespace AssetStudioGUI
     {
         public static bool ExportTexture2D(AssetItem item, string exportPath)
         {
+            System.Console.WriteLine("Exported Texture2D.");
             var m_Texture2D = (Texture2D)item.Asset;
             if (Properties.Settings.Default.convertTexture)
             {
@@ -40,6 +41,7 @@ namespace AssetStudioGUI
 
         public static bool ExportAudioClip(AssetItem item, string exportPath)
         {
+            System.Console.WriteLine("Exported AudioClip.");
             var m_AudioClip = (AudioClip)item.Asset;
             var m_AudioData = m_AudioClip.m_AudioData.GetData();
             if (m_AudioData == null || m_AudioData.Length == 0)
@@ -65,6 +67,7 @@ namespace AssetStudioGUI
 
         public static bool ExportShader(AssetItem item, string exportPath)
         {
+            System.Console.WriteLine("Exported Shader.");
             if (!TryExportFile(exportPath, item, ".shader", out var exportFullPath))
                 return false;
             var m_Shader = (Shader)item.Asset;
@@ -75,6 +78,7 @@ namespace AssetStudioGUI
 
         public static bool ExportTextAsset(AssetItem item, string exportPath)
         {
+            System.Console.WriteLine("Exported TextAsset.");
             var m_TextAsset = (TextAsset)(item.Asset);
             var extension = ".txt";
             if (Properties.Settings.Default.restoreExtensionName)
@@ -93,6 +97,7 @@ namespace AssetStudioGUI
 
         public static bool ExportMonoBehaviour(AssetItem item, string exportPath)
         {
+            System.Console.WriteLine("Exported MonoBehaviour.");
             if (!TryExportFile(exportPath, item, ".json", out var exportFullPath))
                 return false;
             var m_MonoBehaviour = (MonoBehaviour)item.Asset;
@@ -109,6 +114,7 @@ namespace AssetStudioGUI
 
         public static bool ExportFont(AssetItem item, string exportPath)
         {
+            System.Console.WriteLine("Exported Font.");
             var m_Font = (Font)item.Asset;
             if (m_Font.m_FontData != null)
             {
@@ -127,6 +133,7 @@ namespace AssetStudioGUI
 
         public static bool ExportMesh(AssetItem item, string exportPath)
         {
+            System.Console.WriteLine("Exported Mesh.");
             var m_Mesh = (Mesh)item.Asset;
             if (m_Mesh.m_VertexCount <= 0)
                 return false;
@@ -209,6 +216,7 @@ namespace AssetStudioGUI
 
         public static bool ExportVideoClip(AssetItem item, string exportPath)
         {
+            System.Console.WriteLine("Exported VideoClip.");
             var m_VideoClip = (VideoClip)item.Asset;
             if (m_VideoClip.m_ExternalResources.m_Size > 0)
             {
@@ -222,6 +230,7 @@ namespace AssetStudioGUI
 
         public static bool ExportMovieTexture(AssetItem item, string exportPath)
         {
+            System.Console.WriteLine("Exported MovieTexture.");
             var m_MovieTexture = (MovieTexture)item.Asset;
             if (!TryExportFile(exportPath, item, ".ogv", out var exportFullPath))
                 return false;
@@ -231,6 +240,7 @@ namespace AssetStudioGUI
 
         public static bool ExportSprite(AssetItem item, string exportPath)
         {
+            System.Console.WriteLine("Exported Sprite.");
             var type = Properties.Settings.Default.convertType;
             if (!TryExportFile(exportPath, item, "." + type.ToString().ToLower(), out var exportFullPath))
                 return false;
@@ -251,6 +261,7 @@ namespace AssetStudioGUI
 
         public static bool ExportRawFile(AssetItem item, string exportPath)
         {
+            System.Console.WriteLine("Exported RawFile.");
             if (!TryExportFile(exportPath, item, ".dat", out var exportFullPath))
                 return false;
             File.WriteAllBytes(exportFullPath, item.Asset.GetRawData());
@@ -259,6 +270,7 @@ namespace AssetStudioGUI
 
         private static bool TryExportFile(string dir, AssetItem item, string extension, out string fullPath)
         {
+            System.Console.WriteLine("TryExportFile.");
             var fileName = FixFileName(item.Text);
             fullPath = Path.Combine(dir, fileName + extension);
             if (!File.Exists(fullPath))
