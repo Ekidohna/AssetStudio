@@ -10,6 +10,7 @@
 		<FileVersion>0.16.53.0</FileVersion>
 		<Copyright>Copyright © zhangjiequan 2018-2023</Copyright>
 		<DebugType>embedded</DebugType>
+		<AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
 	</PropertyGroup>
 
 	<ItemGroup>
